@@ -1,45 +1,58 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-cmn-Hans" style="min-height: 100%;">
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <title>Willow个人博客网站</title>
-    <style>
-        html, body{
-            z-index: 0;
-            min-height: 100%;
-            margin: 0;
-            padding: 0;
-        }
-        
-        #warn{
-            z-index: 1;
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            right: 20px;
-            box-shadow: 0 0 5px black;
-            border-radius: 5px;
-            background-color: gold;
-            text-align: center;
-            margin: 0;
-            padding: 15px;
-        }
-
-        #head{
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 90%;
-            background: linear-gradient(45deg, blue, purple);
-            background-size: cover;
-            margin: 0;
-        }
-    </style>
+    <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css"/>
   </head>
-  <body>
-    <p id="warn">该网站正在搭建中</p>
 
-    <div id="head">
+  <body class="mdui-theme-layout-dark mdui-appbar-with-toolbar" style="min-height: 100%;">
+
+    <div class="mdui-appbar mdui-shadow-0 mdui-appbar-fixed">
+      <div class="mdui-toolbar mdui-color-theme">
+        <span class="mdui-typo-title">Willow个人博客网站</span>
+        <a href="#SelfProject">个人作品</a>
+      </div>
     </div>
+
+    <div class="mdui-valign" style="height: 450px; background: url(./Puctures/Header.jpg); background-size: cover; filter: brightness(80%);">
+      <span class="mdui-center mdui-text-color-white" style="font-size: 130%;">向前，更进一步</span>
+    </div>
+
+    <div id="SelfProject">
+      <div class="mdui-typo">
+        <h1 class="mdui-text-center">个人作品</h1>
+      </div>
+
+      
+      <div class="mdui-typo" style="margin: 15px">
+        <h2>Linear</h2>
+      </div>
+
+      <div class="mdui-row-xs-3 mdui-row-sm-3 mdui-row-md-3 mdui-row-lg-3 mdui-row-xl-3 mdui-grid" style="margin: 5px;">
+          <div class="mdui-col">
+            <div class="mdui-card">
+              <div class="mdui-card-media">
+                <img src="./Puctures/SelfProjects/Linear/TheStartOfTheWorld.jpg"/>
+                <div class="mdui-card-media-covered mdui-card-media-covered-transparent">
+                  <div class="mdui-card-primary">
+                    <div class="mdui-card-primary-title">世界之起源</div>
+                    <div class="mdui-card-primary-subtitle">The start of the world</div>
+                  </div>
+                </div>
+              </div>
+              <div class="mdui-card-actions">
+                <button class="mdui-btn mdui-ripple" onclick="window.location.href='https://www.bilibili.com/video/BV1ws4y1T7WE/'">相关视频</button>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script>
   </body>
 </html>
