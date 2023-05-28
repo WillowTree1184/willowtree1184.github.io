@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<head>
+    <title>Willow Start</title>
+    <style>
+        *{
+            color: white;
+            outline: none;
+        }
+
+        body{
+            padding: 50px;
+            background: url(./Background.jpg);
+            background-size: cover;
+        }
+
+        div#Card{
+            border-radius: 5px;
+            background-color: white;
+            padding: 15px;
+        }
+
+        div#Card *{
+            color: black;
+        }
+
+        #Title{
+            font-size: 110%;
+        }
+
+        button{
+            transition: 0.1s transform;
+            border: 0;
+            border-radius: 5px;
+            background-color: rgba(0, 0, 0, 0.1);
+            padding: 10px;
+        }
+
+        button:hover{
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        button:active{
+            transform: scale(90%, 90%);
+        }
+
+        #Mask{
+            z-index: 5;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgb(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
+        }
+
+        #Panel{
+            z-index: 6;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 0;
+            border-radius: 5px;
+            background-color: white;
+            padding: 15px;
+        }
+
+        input{
+            display: block;
+            border: 0;
+            border-radius: 5px;
+            background-color: rgba(0, 0, 0, 0.1);
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="TimeShow">00:00</h1>
+    <p id="DateShow"></p>
+
+    <div id="Card" class="FastMenuList">
+        <p id="Title">快速开始</p>
+        <p>以下是你的快捷链接</p>
+        <div id="FastStart">
+
+        </div>
+        <br>
+        <button onclick="SetAddLinkPanel(true)">添加链接</button>
+        
+        <div id="Panel" class="AddLinkPanel" style="display: none; width: 50%;">
+            <p>添加链接</p>
+            <input id="AddLinkPanel_input_url" type="url" placeholder="url" style="width: calc(100% - 10px);">
+            <br>
+            <input id="AddLinkPanel_input_name" type="text" placeholder="name" style="width: calc(100% - 10px);">
+            <br>
+            <button onclick="AddFastLink(document.getElementById('AddLinkPanel_input_url').value, document.getElementById('AddLinkPanel_input_name').value); SetAddLinkPanel(false)">确定并添加</button>
+        </div>
+    </div>
+
+    <div id="Mask" style="display: none;"></div>
+</body>
+<script>
+    function SetTime()
+    {
+        var LocalDate = new Date();
+        document.getElementById("TimeShow").innerHTML = LocalDate.getHours() + ":" + LocalDate.getMinutes();
+        document.getElementById("DateShow").innerHTML = LocalDate.toDateString();
+    }
+    setInterval(SetTime, 10);
+
+    function GetFastLink()
+    {
+        var LinkList = {Link:Array, Name:Array};
+        try
+        {
+            LinkList = JSON.parse(window.localStorage.getItem("FastLink"));
+
+            var Addin = "";
+            for(var i = 0; i < LinkList.Link.length; i ++)
+            {
+                Addin += "<button onclick=\"window.location.href='" + LinkList.Link[i] + "'\">" + LinkList.Name[i] + "</button>&nbsp\;&nbsp\;";
+            }
+
+            document.getElementById("FastStart").innerHTML = Addin;
+        }
+        catch
+        {
+
+        }
+    }
+    setInterval(GetFastLink, 100);
+
+    function AddFastLink(Link="", Name="")
+    {
+        var LinkList = {Link:Array = [], Name:Array = []};
+        try
+        {
+            LinkList = JSON.parse(window.localStorage.getItem("FastLink"));
+            LinkList.Link.push(Link);
+            LinkList.Name.push(Name);
+        }
+        catch
+        {
+            LinkList = {Link:Array = [Link], Name:Array = [Name]};
+        }
+        
+        window.localStorage.setItem("FastLink", JSON.stringify(LinkList));
+    }
+
+    function SetAddLinkPanel(Mode=false)
+    {
+        if (Mode)
+        {
+            document.getElementById("Mask").style.display = "block";
+            document.getElementsByClassName("AddLinkPanel")[0].style.display = "block";
+        }
+        else
+        {
+            document.getElementById("Mask").style.display = "none";
+            document.getElementsByClassName("AddLinkPanel")[0].style.display = "none";
+        }
+    }
+</script>
