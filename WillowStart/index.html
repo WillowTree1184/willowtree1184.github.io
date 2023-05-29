@@ -122,7 +122,10 @@
                 Addin += "<button onclick=\"window.location.href='" + LinkList.Link[i] + "'\">" + LinkList.Name[i] + "</button>&nbsp\;&nbsp\;";
             }
 
-            document.getElementById("FastStart").innerHTML = Addin;
+            if (document.getElementById("FastStart").innerHTML != Addin)
+            {
+                document.getElementById("FastStart").innerHTML = Addin;
+            }
         }
         catch
         {
