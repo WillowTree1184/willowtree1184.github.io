@@ -73,6 +73,14 @@
             background-color: rgba(0, 0, 0, 0.1);
             padding: 5px;
         }
+
+        #FastStart > button{
+            width: 100%;
+            margin: 0;
+            text-align: left;
+            transform: none;
+            border-radius: 0;
+        }
     </style>
 </head>
 <body>
@@ -82,7 +90,7 @@
     <div id="Card" class="FastMenuList">
         <p id="Title">快速开始</p>
         <p>以下是你的快捷链接</p>
-        <div id="FastStart">
+        <div id="FastStart" style="border-radius: 5px; padding: 0; overflow: hidden;">
 
         </div>
         <br>
@@ -119,7 +127,7 @@
             var Addin = "";
             for(var i = 0; i < LinkList.Link.length; i ++)
             {
-                Addin += "<button onclick=\"window.location.href='" + LinkList.Link[i] + "'\">" + LinkList.Name[i] + "</button>&nbsp\;&nbsp\;";
+                Addin += "<button onclick=\"window.location.href='" + LinkList.Link[i] + "'\">" + LinkList.Name[i] + "</button>";
             }
 
             if (document.getElementById("FastStart").innerHTML != Addin)
