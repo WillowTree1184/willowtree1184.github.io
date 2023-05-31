@@ -110,7 +110,8 @@
 
         <br>
         <button onclick="SetAddLinkPanel(true)">添加链接</button>
-        <a onclick="">选项</a>
+        &nbsp;
+        <a onclick="FuncionListMode = (!FuncionListMode)" style="cursor: pointer;">选项</a>
         
         <div id="Panel" class="AddLinkPanel" style="display: none; width: 50%;">
             <p>添加链接</p>
@@ -119,12 +120,16 @@
             <input id="AddLinkPanel_input_name" type="text" placeholder="name" style="width: calc(100% - 10px);">
             <br>
             <button onclick="AddFastLink(document.getElementById('AddLinkPanel_input_url').value, document.getElementById('AddLinkPanel_input_name').value); SetAddLinkPanel(false)">确定并添加</button>
+            &nbsp;
+            <a onclick="SetAddLinkPanel(false)" style="cursor: pointer;">取消</a>
         </div>
     </div>
 
     <div id="Mask" style="display: none;"></div>
 </body>
 <script>
+    var FuncionListMode = false;
+
     function SetTime()
     {
         var LocalDate = new Date();
@@ -133,7 +138,7 @@
     }
     setInterval(SetTime, 10);
 
-    function GetFastLink()
+    function GetFastLink(Reset = false)
     {
         var LinkList = {Link:Array, Name:Array};
         try
@@ -143,22 +148,30 @@
             var Addin = "";
             for(var i = 0; i < LinkList.Link.length; i ++)
             {
-                Addin += "<button onclick=\"window.location.href='" + LinkList.Link[i] + "'\">" + LinkList.Name[i] + "<div id=\"FuncionList\"><a>删除</a></div></button>";
+                if (FuncionListMode)
+                {
+                    Addin += "<button>" + LinkList.Name[i] + "<div id=\"FuncionList\"><a onclick=\"DeleteFastLink(" + i + ")\" style=\"cursor: pointer;\">删除</a></div></button>";
+                }
+                else
+                {
+                    Addin += "<button onclick=\"window.location.href='" + LinkList.Link[i] + "'\">" + LinkList.Name[i] + "</button>";
+                }
             }
 
             if (document.getElementById("FastStart").innerHTML != Addin)
             {
                 document.getElementById("FastStart").innerHTML = Addin;
             }
+
+            console.log(LinkList.Link + "\n" + LinkList.Name);
         }
         catch
         {
-
         }
     }
     setInterval(GetFastLink, 100);
 
-    function AddFastLink(Link="", Name="")
+    function AddFastLink(Link = "", Name = "")
     {
         var LinkList = {Link:Array = [], Name:Array = []};
         try
@@ -175,12 +188,14 @@
         window.localStorage.setItem("FastLink", JSON.stringify(LinkList));
     }
 
-    function SetAddLinkPanel(Mode=false)
+    function SetAddLinkPanel(Mode = false)
     {
         if (Mode)
         {
             document.getElementById("Mask").style.display = "block";
             document.getElementsByClassName("AddLinkPanel")[0].style.display = "block";
+            document.getElementById("AddLinkPanel_input_url").value = "";
+            document.getElementById("AddLinkPanel_input_name").value = "";
         }
         else
         {
@@ -189,8 +204,25 @@
         }
     }
 
-    function ResetDeletePanel()
+    function DeleteFastLink(ID = 0)
     {
-        
+        var LinkList = {Link:Array, Name:Array};
+        var NewLinkList = {Link:Array = [""], Name:Array = [""]};
+
+        LinkList = JSON.parse(window.localStorage.getItem("FastLink"));
+
+        for (var i = 0; i < LinkList.Link.length; i ++)
+        {
+            if (i != ID)
+            {
+                NewLinkList.Link.push(LinkList.Link[i]);
+                NewLinkList.Name.push(LinkList.Name[i]);
+            }
+        }
+
+        NewLinkList.Link.shift();
+        NewLinkList.Name.shift();
+
+        window.localStorage.setItem("FastLink", JSON.stringify(NewLinkList));
     }
 </script>
