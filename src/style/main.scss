@@ -6,7 +6,12 @@
 html {
     font-family: 'JetBrains Mono';
     font-synthesis: weight style;
-    width: 100dvw;
+    
+}
+
+html,
+body {
+    width: 100svw;
     overflow-x: hidden;
 }
 

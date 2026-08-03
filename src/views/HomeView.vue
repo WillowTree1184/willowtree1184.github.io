@@ -34,10 +34,10 @@ const galleryMarqueeGroups = computed(() => {
     <div id="hero" class="flex align-center">
         <div class="flex justify-between half-w right">
             <div class="half-w">
-                <img alt="logo" :src="favicon" height="100"/>
+                <img alt="logo" :src="favicon" style="height: 4em;"/>
             </div>
-            &nbsp;&nbsp;&nbsp;
         </div>
+        &nbsp;
         <div class="half-w">
             <p class="text-2 gap-left-px-2">WillowTree1184's</p>
             <h1>Personal Website</h1>
