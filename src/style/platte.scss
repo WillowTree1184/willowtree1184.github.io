@@ -1,0 +1,17 @@
+@for $i from 1 through 5 {
+    :root {
+        --text-#{$i}: hsl(0, 0%, #{10% + $i * (5% + $i * 2%)});
+    }
+
+    .text-#{$i} {
+        color: var(--text-#{$i});
+    }
+
+    .text-level-#{$i} {
+        font-size: #{100% - ($i - 1) * 10%};
+    }
+}
+
+html {
+    color: var(--text-1);
+}

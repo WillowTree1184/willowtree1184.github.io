@@ -1,0 +1,31 @@
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('/fonts/JetBrainsMono-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('/fonts/JetBrainsMono-Bold.woff2') format('woff2');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+$font-min: 110%;
+$font-max: 180%;
+$vp-min: 720px;
+$vp-max: 1428px;
+
+html {
+    font-size: clamp(#{$font-min},
+        #{$font-min} + (100svw - #{$vp-min}) * (#{$font-max} - #{$font-min}) / (#{$vp-max} - #{$vp-min}),
+        #{$font-max});
+    scroll-behavior: smooth;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}

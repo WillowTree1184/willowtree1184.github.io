@@ -1,0 +1,29 @@
+@media (hover: hover) {
+    .interactable,
+    .sub-interactable * {
+        transition: 0.15s;
+    }
+
+    @for $i from 1 through 5 {
+
+        .interactable.hover-scale-#{$i}:hover,
+        .sub-interactable:hover .hover-scale-#{$i}:hover {
+            transform: scale(#{100% - $i * 1%});
+        }
+
+        .interactable.hover-move-left-#{$i}:hover,
+        .sub-interactable:hover .hover-move-left-#{$i} {
+            transform: translateX(-#{5px + ($i - 1) * 5px});
+        }
+
+        .interactable.hover-move-right-#{$i}:hover,
+        .sub-interactable:hover .hover-move-right-#{$i} {
+            transform: translateX(#{5px + ($i - 1) * 5px});
+        }
+
+        .interactable.hover-fade-#{$i}:hover,
+        .sub-interactable:hover .hover-fade-#{$i} {
+            opacity: #{1 - $i * 0.2};
+        }
+    }
+}
