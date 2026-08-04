@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Lenis from 'lenis';
 import { ref } from 'vue';
-import Loading from './component.vue/Loading.vue';
+import Loading from './component/Loading.vue';
 
 const lenis = new Lenis({
     autoRaf: false,
@@ -27,8 +27,14 @@ const ready = ref(false);
         </div>
     </header> -->
     <div class="center-content">
-        <RouterView></RouterView>
         <Loading @ready="ready = true"></Loading>
+        <RouterView></RouterView>
+        <div class="gap-left-px-1 gap-top-em-1"></div>
+        <div class="gap-left-px-1 gap-top-em-1">
+            <b class="text-4 text-level-3 uppercase">Coming Soon</b>
+            <p>网站正在构建中</p>
+        </div>
+        <div class="gap-left-px-1 gap-top-em-1"></div>
     </div>
 </template>
 

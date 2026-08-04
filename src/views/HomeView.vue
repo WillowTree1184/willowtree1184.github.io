@@ -2,7 +2,10 @@
 import { Vue3Marquee } from 'vue3-marquee';
 import favicon from '@/assets/favicon.svg';
 import { computed } from 'vue';
-import { RouterLink } from 'vue-router';
+import AccountRecordView from '@/component/AccountRecordView.vue';
+import { accountRecords } from '@/data/account-record';
+import { favouriteRecords, isFavouriteRecord } from '@/data/favourite-record';
+import { techStackRecords } from '@/data/tech-stack-record';
 
 // const photographyWorkGlobs = import.meta.glob('@/assets/photography-work/*.featured.*', {
 //     eager: true,
@@ -32,12 +35,10 @@ const galleryMarqueeGroups = computed(() => {
 </script>
 
 <template>
-    <div id="hero" class="flex align-center container">
+    <div id="hero" class="flex align-center">
         <div class="flex align-center justify-between full-w">
-            <div class="half-w right">
-                <div class="half-w">
-                    <img alt="logo" :src="favicon" style="height: 4em" />
-                </div>
+            <div>
+                <img alt="logo" :src="favicon" style="height: 4em" />
             </div>
             &nbsp;
             <div class="half-w">
@@ -57,133 +58,10 @@ const galleryMarqueeGroups = computed(() => {
                         <b>WillowTree</b>
                         <span class="text-2 text-level-3">#1184</span>
                     </h2>
-                    <p class="text-2 text-level-3 uppercase sub-interactable">&boxv;</p>
-                    <p class="text-2 text-level-3 uppercase sub-interactable">
-                        &boxvr;
-                        <span class="hover-fade-1">
-                            Species:
-                            <span class="inline-block hover-move-right-2">
-                                Chordata &rang;
-                                <span class="inline-block hover-move-right-1">
-                                    Mammalia &rang;
-                                    <span class="inline-block hover-move-right-1">Homo Sapiens</span>
-                                </span>
-                            </span>
-                        </span>
-                    </p>
-                    <p class="text-2 text-level-3 uppercase sub-interactable">
-                        &boxvr;&boxh;&boxh;&boxh;&boxh;
-                        <span class="hover-fade-1">
-                            Age:
-                            <span class="inline-block hover-move-right-2">
-                                16
-                                <span class="inline-block hover-move-right-1">Year</span>
-                            </span>
-                        </span>
-                    </p>
-                    <p class="text-2 text-level-3 uppercase sub-interactable">
-                        &boxvr;&boxh;&boxh;&boxh;&boxh;
-                        <span class="hover-fade-1">
-                            Sex:
-                            <span class="inline-block hover-move-right-2">Male</span>
-                        </span>
-                    </p>
-                    <p class="text-2 text-level-3 uppercase sub-interactable">
-                        &boxvr;&boxh;&boxh;
-                        <span class="hover-fade-1">
-                            Users
-                            <p class="text-2 text-level-3 uppercase sub-interactable">
-                                &boxv;&nbsp;&nbsp;&nbsp;&boxvr;&boxh;&boxh;
-                                <span class="hover-fade-1">
-                                    Count:
-                                    <span class="inline-block hover-move-right-2">2</span>
-                                </span>
-                            </p>
-                            <p class="text-2 text-level-3 uppercase sub-interactable">
-                                &boxv;&nbsp;&nbsp;&nbsp;&boxur;
-                                <span class="hover-fade-1">
-                                    Objects
-                                    <p class="text-2 text-level-3 uppercase sub-interactable">
-                                        &boxv;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&boxvr;&boxh;&boxh;
-                                        <span class="hover-fade-1">
-                                            Host
-                                            <p class="text-2 text-level-3 uppercase sub-interactable">
-                                                &boxv;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&boxv;&nbsp;&nbsp;&nbsp;&boxvr;&boxh;&boxh;
-                                                <span class="hover-fade-1">
-                                                    Join Date:
-                                                    <span class="inline-block hover-move-right-2">20091204</span>
-                                                </span>
-                                            </p>
-                                            <p class="text-2 text-level-3 uppercase sub-interactable">
-                                                &boxv;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&boxv;&nbsp;&nbsp;&nbsp;&boxvr;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;
-                                                <span class="hover-fade-1">
-                                                    Type:
-                                                    <span class="inline-block hover-move-right-2">Original</span>
-                                                </span>
-                                            </p>
-                                            <p class="text-2 text-level-3 uppercase sub-interactable">
-                                                &boxv;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&boxv;&nbsp;&nbsp;&nbsp;&boxvr;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;
-                                                <span class="hover-fade-1">
-                                                    MBTI:
-                                                    <span class="inline-block hover-move-right-2">
-                                                        INTP
-                                                        <span class="inline-block hover-move-right-1">Turbulent</span>
-                                                    </span>
-                                                </span>
-                                            </p>
-                                            <p class="text-2 text-level-3 uppercase sub-interactable">
-                                                &boxv;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&boxv;&nbsp;&nbsp;&nbsp;&boxur;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;
-                                                <span class="hover-fade-1">
-                                                    State:
-                                                    <span class="inline-block hover-move-right-2">Online</span>
-                                                </span>
-                                            </p>
-                                        </span>
-                                    </p>
-                                    <p class="text-2 text-level-3 uppercase sub-interactable">
-                                        &boxv;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&boxur;&boxh;&boxh;
-                                        <span class="hover-fade-1">
-                                            Yu Chengyu
-                                            <p class="text-2 text-level-3 uppercase sub-interactable">
-                                                &boxv;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&boxvr;&boxh;&boxh;
-                                                <span class="hover-fade-1">
-                                                    Join Date:
-                                                    <span class="inline-block hover-move-right-2">20250913</span>
-                                                </span>
-                                            </p>
-                                            <p class="text-2 text-level-3 uppercase sub-interactable">
-                                                &boxv;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&boxvr;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;
-                                                <span class="hover-fade-1">
-                                                    Type:
-                                                    <span class="inline-block hover-move-right-2">
-                                                        Neko
-                                                        <span class="inline-block hover-move-right-1">
-                                                            as
-                                                            <span class="inline-block hover-move-right-1">Tulpa</span>
-                                                        </span>
-                                                    </span>
-                                                </span>
-                                            </p>
-                                            <p class="text-2 text-level-3 uppercase sub-interactable">
-                                                &boxv;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&boxur;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;
-                                                <span class="hover-fade-1">
-                                                    State:
-                                                    <span class="inline-block hover-move-right-2">Connecting</span>
-                                                </span>
-                                            </p>
-                                        </span>
-                                    </p>
-                                </span>
-                            </p>
-                        </span>
-                    </p>
-                    <p class="text-2 text-level-3 uppercase sub-interactable">
-                        &boxur;&boxh;&boxh;
-                        <span class="hover-fade-1">
-                            State:
-                            <span class="inline-block hover-move-right-2">Active</span>
-                        </span>
-                    </p>
+                    <div class="text-2 text-level-3 uppercase">
+                        <p>&boxv;</p>
+                        <AccountRecordView :record="accountRecords"></AccountRecordView>
+                    </div>
                 </div>
             </div>
         </div>
@@ -197,38 +75,12 @@ const galleryMarqueeGroups = computed(() => {
                     <span class="text-2 text-level-4 uppercase">Favourite</span>
                 </h3>
                 <div class="gap-top-4 marquee-fullwidth text-2 uppercase">
-                    <Vue3Marquee :duration="20" :clone="true" :pause-on-hover="true" class="interactable hover-fade-1">
-                        <a href="#tech-stack">计算机科学 Computer Science&nbsp;</a>
-                    </Vue3Marquee>
-                    <Vue3Marquee :duration="20" :direction="'reverse'" :clone="true" :pause-on-hover="true" class="interactable hover-fade-1">
-                        <p>心理学 Psychology&nbsp;</p>
-                    </Vue3Marquee>
-                    <Vue3Marquee :duration="20" :clone="true" :pause-on-hover="true" class="interactable hover-fade-1">
-                        <p>家庭教育学 Family Education&nbsp;</p>
-                    </Vue3Marquee>
-                    <Vue3Marquee :duration="20" :direction="'reverse'" :clone="true" :pause-on-hover="true" class="interactable hover-fade-1">
-                        <p>脑神经科学 Brain Neuroscience&nbsp;</p>
-                    </Vue3Marquee>
-                    <Vue3Marquee :duration="20" :clone="true" :pause-on-hover="true" class="interactable hover-fade-2">
-                        <a href="#gallery">摄影 Photography&nbsp;</a>
-                    </Vue3Marquee>
-                    <Vue3Marquee :duration="20" :direction="'reverse'" :clone="true" :pause-on-hover="true" class="interactable hover-fade-1">
-                        <p>平面设计 Graphic Design&nbsp;</p>
-                    </Vue3Marquee>
-                    <Vue3Marquee :duration="20" :clone="true" :pause-on-hover="true" class="interactable hover-fade-1">
-                        <p>人造意识体 Tulpamamcy&nbsp;</p>
-                    </Vue3Marquee>
-                    <Vue3Marquee :duration="20" :direction="'reverse'" :clone="true" :pause-on-hover="true" class="interactable hover-fade-1">
-                        <p>猫娘 Nekomusume&nbsp;</p>
-                    </Vue3Marquee>
-                    <Vue3Marquee :duration="20" :clone="true" :pause-on-hover="true" class="interactable hover-fade-2">
-                        <p>哲学 Philosophy&nbsp;</p>
-                    </Vue3Marquee>
-                    <Vue3Marquee :duration="20" :direction="'reverse'" :clone="true" :pause-on-hover="true" class="interactable hover-fade-1">
-                        <p>音乐 Music&nbsp;</p>
-                    </Vue3Marquee>
-                    <Vue3Marquee :duration="20" :clone="true" :pause-on-hover="true" class="interactable hover-fade-2">
-                        <a href="#projects">创造 Create&nbsp;</a>
+                    <Vue3Marquee v-for="(record, i) in favouriteRecords" :duration="20" :direction="i % 2 === 0 ? 'normal' : 'reverse'" :clone="true" :pause-on-hover="true" class="interactable hover-fade-1">
+                        <span v-if="isFavouriteRecord(record)">
+                            <router-link v-if="record.isRouterLink ?? false" :to="record.link">{{ record.name }}&nbsp;</router-link>
+                            <a v-else :href="record.link">{{ record.name }}&nbsp;</a>
+                        </span>
+                        <p v-else>{{ record }}&nbsp;</p>
                     </Vue3Marquee>
                 </div>
             </div>
@@ -243,40 +95,15 @@ const galleryMarqueeGroups = computed(() => {
                 <span class="text-2 text-level-4 uppercase">Tech stack</span>
             </h3>
             <div>
-                <div class="gap-top-8 flex align-center justify-between interactable hover-fade-1">
+                <div v-for="record in techStackRecords" class="gap-top-8 flex align-center justify-between interactable hover-fade-1">
                     <div>
-                        <p><b>.NET</b></p>
-                        <p class="text-3 text-level-4">桌面应用 / CLI / 游戏 / Web API</p>
+                        <p>
+                            <b>{{ record.name }}</b>
+                        </p>
+                        <p class="text-3 text-level-4">{{ record.usage }}</p>
                     </div>
                     <div class="right text-2">
-                        <p>C#</p>
-                        <p>VB</p>
-                        <p>WPF</p>
-                        <p>Unity</p>
-                        <p>Blazor</p>
-                        <p>Asp.Net</p>
-                    </div>
-                </div>
-                <div class="gap-top-8 flex align-center justify-between interactable hover-fade-1">
-                    <div>
-                        <p><b>node.js</b></p>
-                        <p class="text-3 text-level-4">网页前端</p>
-                    </div>
-                    <div class="right text-2">
-                        <p>java script</p>
-                        <p>type script</p>
-                        <p>vue</p>
-                    </div>
-                </div>
-                <div class="gap-top-8 flex align-center justify-between interactable hover-fade-1">
-                    <div>
-                        <p><b>Bare Metal</b></p>
-                        <p class="text-3 text-level-4">操作系统 / CLI / UEFI 应用</p>
-                    </div>
-                    <div class="right text-2">
-                        <p>C</p>
-                        <p>C++</p>
-                        <p>EDKII</p>
+                        <p v-for="item in record.items">{{ item }}</p>
                     </div>
                 </div>
             </div>
@@ -345,17 +172,16 @@ const galleryMarqueeGroups = computed(() => {
             </div>
         </div>
     </div>
-    <div class="gap-left-px-1 gap-top-em-1"></div>
-    <div class="gap-left-px-1 gap-top-em-1">
-        <b class="text-4 text-level-3 uppercase">Coming Soon</b>
-        <p>我真的在非常积极地构建这个网站</p>
-    </div>
-    <div class="gap-left-px-1 gap-top-em-1"></div>
 </template>
 
 <style scoped>
+#hero {
+    min-height: 100svh;
+}
+
 .container {
-    min-height: 80svh;
+    min-height: 50svh;
+    padding-top: 25svh;
 }
 
 .marquee-fullwidth {

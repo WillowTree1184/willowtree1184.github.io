@@ -2,7 +2,6 @@
 import { usePreloader } from '@/utils/preload';
 import { ref, onMounted, onUnmounted } from 'vue';
 import { useRouter } from 'vue-router';
-import { Vue3Marquee } from 'vue3-marquee';
 
 const visible = ref(true);
 const vitrualProgress = ref(0);
@@ -40,7 +39,7 @@ function handleSkip() {
 
 async function boot() {
     const startTime = Date.now();
-    const MIN_LOAD_TIME = 800;
+    const MIN_LOAD_TIME = 200;
 
     performance.clearResourceTimings();
 
@@ -161,7 +160,7 @@ onUnmounted(() => {
                         <span class="progress-text">{{ vitrualProgress.toFixed(0) }}%</span>
                     </p>
 
-                    <div class="loading-progress">
+                    <div class="loading-progress gap-top-px-4">
                         <div class="progress-track">
                             <div class="progress-bar" :style="{ width: `${vitrualProgress}%` }" />
                         </div>

@@ -1,7 +1,9 @@
 @media (hover: hover) {
     .interactable,
     .sub-interactable * {
-        transition: 0.25s;
+        transition:
+            transform 0.25s,
+            opacity 0.25s;
     }
 
     @for $i from 1 through 5 {
