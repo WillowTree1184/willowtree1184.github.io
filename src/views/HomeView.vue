@@ -47,7 +47,7 @@ const galleryMarqueeGroups = computed(() => {
                 <h1>Personal Website</h1>
                 <p class="text-2 text-level-4 gap-left-px-1">[ beta-v1 ]</p>
             </div>
-            </div>
+        </div>
     </div>
 
     <div class="container">

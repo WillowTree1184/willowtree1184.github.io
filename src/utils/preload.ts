@@ -51,6 +51,7 @@ export interface PreloaderState {
     success: Ref<string[]>;
     isRunning: Ref<boolean>;
     isComplete: Ref<boolean>;
+    isSkipped: Ref<boolean>;
 }
 
 // ==================== 核心工具函数 ====================
@@ -348,6 +349,7 @@ export function usePreloader(): PreloaderState & {
         options?: PreloadOptions & PreloadCallbacks,
     ) => Promise<PreloadResult>;
     reset: () => void;
+    skip: () => void; // ← 新增
 } {
     const stage = ref<PreloadStage>('idle');
     const progress = ref(0);
@@ -357,6 +359,9 @@ export function usePreloader(): PreloaderState & {
     const success = ref<string[]>([]);
     const isRunning = ref(false);
     const isComplete = ref(false);
+    const isSkipped = ref(false); // ← 新增
+
+    let skipCtrl: AbortController | null = null;
 
     const reset = () => {
         stage.value = 'idle';
@@ -367,16 +372,22 @@ export function usePreloader(): PreloaderState & {
         success.value = [];
         isRunning.value = false;
         isComplete.value = false;
+        isSkipped.value = false;
+        skipCtrl = null;
+    };
+
+    /** 外部调用：跳过图片加载 */
+    const skip = () => {
+        if (isSkipped.value || !skipCtrl) return;
+        isSkipped.value = true;
+        skipCtrl.abort();
     };
 
     const run = async (
         router: Router,
         options: PreloadOptions & PreloadCallbacks = {},
     ): Promise<PreloadResult> => {
-        if (isRunning.value) {
-            throw new Error('Preloader is already running');
-        }
-
+        if (isRunning.value) throw new Error('Preloader is already running');
         reset();
         isRunning.value = true;
 
@@ -390,26 +401,22 @@ export function usePreloader(): PreloaderState & {
 
         try {
             // 阶段 1: DOM
+            await waitForDOMReady();
             stage.value = 'dom';
             onStageChange?.('dom');
-            await waitForDOMReady();
 
             // 阶段 2: Fonts
+            await waitForFonts();
             stage.value = 'fonts';
             onStageChange?.('fonts');
-            await waitForFonts();
 
             // 阶段 3: Router
+            await waitForRouter(router);
             stage.value = 'router';
             onStageChange?.('router');
-            if (preloadOptions.targetRoute) {
-                await waitForRoute(router, preloadOptions.targetRoute);
-            } else {
-                await waitForRouter(router);
-            }
 
-            // 阶段 4: Images
-            // 自动查找 router-view 容器，精确扫描当前视图
+            // 阶段 4: Images（可中断）
+            skipCtrl = new AbortController();
             stage.value = 'images';
             onStageChange?.('images');
 
@@ -419,25 +426,52 @@ export function usePreloader(): PreloaderState & {
                 document.querySelector('#app > div') ||
                 document;
 
-            const result = await preloadContainerImages({
+            const imagePromise = preloadContainerImages({
                 ...preloadOptions,
                 container: routerView as HTMLElement,
                 onImageProgress: (c, t) => {
+                    if (skipCtrl?.signal.aborted) return;
                     current.value = c;
                     total.value = t;
                     progress.value = t > 0 ? Math.round((c / t) * 100) : 0;
                     onImageProgress?.(c, t);
                 },
                 onImageLoad: (url) => {
+                    if (skipCtrl?.signal.aborted) return;
                     success.value.push(url);
                     onImageLoad?.(url);
                 },
                 onImageError: (url) => {
+                    if (skipCtrl?.signal.aborted) return;
                     failed.value.push(url);
                     onImageError?.(url);
                 },
             });
 
+            // 等待：要么图片全加载完，要么被 skip()
+            await Promise.race([
+                imagePromise,
+                new Promise<void>((resolve) => {
+                    skipCtrl?.signal.addEventListener(
+                        'abort',
+                        () => resolve(),
+                        {
+                            once: true,
+                        },
+                    );
+                }),
+            ]);
+
+            // 如果被 skip，用已加载的部分构造结果；否则等 imagePromise 真正完成
+            const result: PreloadResult = skipCtrl.signal.aborted
+                ? {
+                      success: success.value,
+                      failed: failed.value,
+                      total: total.value,
+                  }
+                : await imagePromise;
+
+            // 阶段 5: Complete
             stage.value = 'complete';
             onStageChange?.('complete');
             isComplete.value = true;
@@ -459,11 +493,12 @@ export function usePreloader(): PreloaderState & {
         success,
         isRunning,
         isComplete,
+        isSkipped,
         run,
         reset,
+        skip,
     };
 }
-
 // ==================== 默认导出 ====================
 
 export default {
