@@ -4,7 +4,11 @@ import favicon from '@/assets/favicon.svg';
 import { computed } from 'vue';
 import { RouterLink } from 'vue-router';
 
-const photographyWorkGlobs = import.meta.glob('@/assets/photography-work/*.featured.*', {
+// const photographyWorkGlobs = import.meta.glob('@/assets/photography-work/*.featured.*', {
+//     eager: true,
+// });
+
+const photographyWorkGlobs = import.meta.glob('@/assets/photography-work/*.*', {
     eager: true,
 });
 
