@@ -7,7 +7,8 @@
         "dev": "vite",
         "build": "run-p type-check \"build-only {@}\" --",
         "preview": "vite preview",
-        "build-only": "vite build",
+        "build-only": "run-p raw-build && node scripts/post-build-images.js",
+        "raw-build": "vite build",
         "type-check": "vue-tsc --build",
         "format": "prettier --write --experimental-cli ./"
     },
@@ -28,6 +29,7 @@
         "@vitejs/plugin-vue": "^6.0.8",
         "@vue/tsconfig": "^0.9.1",
         "autoprefixer": "^10.5.4",
+        "fast-glob": "^3.3.3",
         "npm-run-all2": "^9.0.2",
         "postcss-combine-duplicated-selectors": "^10.0.3",
         "postcss-preset-env": "^11.3.2",
