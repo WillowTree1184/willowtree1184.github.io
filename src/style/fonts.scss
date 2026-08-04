@@ -1,3 +1,5 @@
+@use "sass:math";
+
 @font-face {
     font-family: 'JetBrains Mono';
     src: url('/fonts/JetBrainsMono-Regular.woff2') format('woff2');
@@ -20,8 +22,18 @@ $vp-min: 720px;
 $vp-max: 1428px;
 
 html {
-    font-size: clamp(#{$font-min}, #{$font-min} + (100svw - #{$vp-min}) * (#{$font-max} - #{$font-min}) / (#{$vp-max} - #{$vp-min}), #{$font-max});
+    --media-font-size: #{$font-min};
+    font-size: var(--media-font-size);
     scroll-behavior: smooth;
+    text-size-adjust: 100%;
+}
+
+@for $i from 1 through 5 {
+    @media (min-width: #{$vp-min + math.div(($vp-max - $vp-min), 4) * ($i - 1)}) {
+        html {
+            --media-font-size: #{$font-min + math.div(($font-max - $font-min), 4) * ($i - 1)};
+        }
+    }
 }
 
 .uppercase {

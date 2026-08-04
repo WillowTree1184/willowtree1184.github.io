@@ -20,7 +20,7 @@ export const accountRecords: AccountRecord[] = [
     },
     {
         key: 'Usrs:',
-        value: ['[ ', '2 ', ']'],
+        value: ['[ ', 'List(2) ', ']'],
         children: [
             {
                 key: '1',
@@ -64,7 +64,7 @@ export const accountRecords: AccountRecord[] = [
                     },
                     {
                         key: 'MBTI:',
-                        value: 'Unknow',
+                        value: ['[ ', 'Unknow ', ']']
                     },
                     {
                         key: 'Stat:',

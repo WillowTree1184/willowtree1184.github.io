@@ -40,7 +40,7 @@ const ready = ref(false);
 
 <style scoped>
 .center-content {
-    max-width: 42em;
+    max-width: 44em;
     margin: auto;
     padding-left: 4em;
     padding-right: 4em;
