@@ -37,11 +37,11 @@ const galleryMarqueeGroups = computed(() => {
 <template>
     <div id="hero" class="flex align-center">
         <div class="flex align-center justify-between full-w">
-            <div>
+            <div class="flex justify-center" style="flex: 1;">
                 <img alt="logo" :src="favicon" style="height: 4em" />
             </div>
             &nbsp;
-            <div class="half-w">
+            <div style="flex: 2;">
                 <p class="text-2 gap-left-px-2">WillowTree1184's</p>
                 <h1>Personal Website</h1>
                 <p class="text-2 text-level-4 gap-left-px-1">[ beta-v1 ]</p>
@@ -68,7 +68,7 @@ const galleryMarqueeGroups = computed(() => {
     </div>
     <div class="container flex align-center">
         <div class="full-w">
-            <div id="favourite" class="gap-top-em-2 reveal">
+            <div id="favourite" class="gap-top-em-2">
                 <p class="text-4 text-level-3 uppercase gap-left-px-1">Document#001</p>
                 <h3 class="flex justify-between align-center">
                     <b>涉猎的领域</b>
