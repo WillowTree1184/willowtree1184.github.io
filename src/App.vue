@@ -5,7 +5,7 @@ import Loading from './component.vue/Loading.vue';
 
 const lenis = new Lenis({
     autoRaf: false,
-    autoResize: true
+    autoResize: true,
 });
 
 function raf(time: number) {
