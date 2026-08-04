@@ -184,8 +184,9 @@ onUnmounted(() => {
     display: flex;
     align-items: center;
     justify-content: center;
+    background: hsla(var(--background-hsl-1), 100%);
+    backdrop-filter: blur(50px) brightness(120%);
     inset: 0;
-    background: var(--background-1);
     z-index: 9999;
 }
 
@@ -220,16 +221,19 @@ onUnmounted(() => {
 /* 过渡动画 */
 .loading-fade-leave-active {
     transition:
-        opacity 0.6s ease,
-        transform 0.6s ease,
-        filter 0.6s ease;
+        opacity 0.15s ease-in,
+        filter 0.15s ease-in,
+        background 0.15s ease-in,
+        backdrop-filter 0.15s ease-in;
 }
 
-.loading-fade-leave-to {
+.loading-fade-leave-to.component {
     opacity: 0;
-    transform: scale(0.98);
-    filter: blur(15px);
+    background: hsla(var(--background-hsl-1), 0%);
+    filter: blur(50px);
+    backdrop-filter: blur(0px)  brightness(100%);
 }
+
 
 .skip-btn-enter-active {
     transition:

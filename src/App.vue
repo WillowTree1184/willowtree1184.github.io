@@ -27,8 +27,8 @@ const ready = ref(false);
         </div>
     </header> -->
     <div class="center-content">
-        <Loading @ready="ready = true"></Loading>
         <RouterView></RouterView>
+        <Loading @ready="ready = true"></Loading>
         <div class="gap-left-px-1 gap-top-em-1"></div>
         <div class="gap-left-px-1 gap-top-em-1">
             <b class="text-4 text-level-3 uppercase">Coming Soon</b>

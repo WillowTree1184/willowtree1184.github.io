@@ -16,6 +16,11 @@ body {
     font-synthesis: weight style;
     font-weight: normal;
     user-select: none;
+    box-sizing: border-box;
+}
+
+span {
+    font-size: 100%;
 }
 
 b {
