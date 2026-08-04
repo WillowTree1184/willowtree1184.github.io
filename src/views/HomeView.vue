@@ -31,7 +31,7 @@ const galleryMarqueeGroups = computed(() => {
 </script>
 
 <template>
-    <div id="hero" class="flex align-center">
+    <div id="hero" class="container flex align-center">
         <div class="flex justify-between half-w right">
             <div class="half-w">
                 <img alt="logo" :src="favicon" style="height: 4em;"/>
@@ -45,7 +45,7 @@ const galleryMarqueeGroups = computed(() => {
         </div>
     </div>
     <div id="about">
-        <p class="text-2 uppercase"> Earth Online Player Document</p>
+        <p class="text-2 uppercase">Earth Online Player Document</p>
         <div class="gap-left-px-1">
             <h2 class="flex justify-between align-baseline"><b>WillowTree</b> <span class="text-2 text-level-3">#1184</span></h2>
             <p class="text-2 text-level-2 uppercase sub-interactable">&boxvr;&boxh; <span class="hover-fade-1">Age: <span class="inline-block hover-move-right-2">16</span></span></p>
@@ -53,9 +53,9 @@ const galleryMarqueeGroups = computed(() => {
             <p class="text-2 text-level-2 uppercase sub-interactable">&boxur; <span class="hover-fade-1">MBTI: <span class="inline-block hover-move-right-2">INTP Turbulent</span></span></p>
         </div>
     </div>
-    <div id="favourite" class="gap-left-px-1 gap-top-em-2">
-        <p class="text-4 text-level-3 uppercase">Document#001</p>
-        <h3 class="flex justify-between align-center gap-left-px-2"><b>涉猎的领域</b> <span class="text-3 text-level-4 uppercase">Favourite</span></h3>
+    <div id="favourite" class="container gap-top-em-2">
+        <p class="text-4 text-level-3 uppercase gap-left-px-1">Document#001</p>
+        <h3 class="flex justify-between align-center"><b>涉猎的领域</b> <span class="text-3 text-level-4 uppercase">Favourite</span></h3>
         <div class="gap-top-4 marquee-fullwidth text-2 uppercase">
             <Vue3Marquee :duration="20" :clone="true" :pause-on-hover="true" class="interactable hover-fade-1">
                 <a href="#tech-stack">计算机科学 Computer Science&nbsp;</a>
@@ -93,31 +93,40 @@ const galleryMarqueeGroups = computed(() => {
         </div>
     </div>
 
-    <div id="tech-stack" class="gap-left-px-1 gap-top-em-2">
-        <p class="text-4 text-level-3 uppercase">Document#002</p>
+    <div id="tech-stack" class="container gap-top-em-2">
+        <p class="text-4 text-level-3 gap-left-px-2 uppercase">Document#002</p>
         <h3 class="flex justify-between align-baseline"><b>用过的技术栈</b><span class="text-3 text-level-4 uppercase">Tech stack</span></h3>
         <div>
             <div class="gap-top-8 flex align-center justify-between interactable hover-fade-1">
-                <p><b>.NET</b></p>
+                <div>
+                    <p><b>.NET</b></p>
+                    <p class="text-3 text-level-4">桌面应用 / CLI / 游戏 / Web API</p>
+                </div>
                 <div class="right text-2">
                     <p>C#</p>
                     <p>VB</p>
-                    <p>Unity</p>
-                    <p>Asp.Net</p>
-                    <p>Blazor</p>
                     <p>WPF</p>
+                    <p>Unity</p>
+                    <p>Blazor</p>
+                    <p>Asp.Net</p>
                 </div>
             </div>
             <div class="gap-top-8 flex align-center justify-between interactable hover-fade-1">
-                <p><b>npm</b></p>
+                <div>
+                    <p><b>node.js</b></p>
+                    <p class="text-3 text-level-4">网页前端</p>
+                </div>
                 <div class="right text-2">
-                    <p>js</p>
-                    <p>ts</p>
+                    <p>java script</p>
+                    <p>type script</p>
                     <p>vue</p>
                 </div>
             </div>
             <div class="gap-top-8 flex align-center justify-between interactable hover-fade-1">
-                <p><b>Bare Metal</b></p>
+                <div>
+                    <p><b>Bare Metal</b></p>
+                    <p class="text-3 text-level-4">操作系统 / CLI / UEFI 应用</p>
+                </div>
                 <div class="right text-2">
                     <p>C</p>
                     <p>C++</p>
@@ -126,26 +135,29 @@ const galleryMarqueeGroups = computed(() => {
             </div>
         </div>
     </div>
-    <div id="gallery" class="gap-left-px-1 gap-top-em-2">
-        <p class="text-4 text-level-3 uppercase">Document#003</p>
+    <div id="gallery" class="container gap-top-em-2">
+        <p class="text-4 text-level-3 gap-left-px-1 uppercase">Document#003</p>
         <h3><b>摄影作品</b><p class="text-3 text-level-4 uppercase">Gallery</p></h3>
         <div class="gap-top-8 photography-works-vp">
-            <div class="marquee-fullwidth interactable hover-fade-1 photography-works">
-                <Vue3Marquee v-for="(group, i) in galleryMarqueeGroups" :key="i" :duration="20" :direction="i % 2 === 0 ? 'normal' : 'reverse'" :clone="true">
-                    <img v-for="(src, i) in group" :key="i" :src="src" style="height: 5em; margin: 0.5em"/>
+            <div class="marquee-fullwidth photography-works">
+                <Vue3Marquee v-for="(group, i) in galleryMarqueeGroups" :key="i" :duration="20" :direction="i % 2 === 0 ? 'normal' : 'reverse'" :clone="true" :pause-on-hover="true">
+                    <img v-for="(src, i) in group" :key="i" :src="src" class="interactable hover-fade-1" />
                 </Vue3Marquee>
             </div>
         </div>
-    </div>
-    <div class="gap-left-px-1 gap-top-em-1 right">
+        <div class="gap-left-px-1 gap-top-em-1 right">
         <b class="text-4 text-level-3 uppercase">Coming Soon</b>
         <p>该网站正在狠狠地被构建，请耐心等待</p>
     </div>
     <div class="gap-left-px-1 gap-top-em-1"></div>
+    </div>
 </template>
 
 <style scoped>
-#hero {
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     min-height: 90svh;
 }
 
@@ -153,15 +165,19 @@ const galleryMarqueeGroups = computed(() => {
     position: relative;
     left: 50%;
     transform: translateX(-50%);
-    width: 120svw;
-    overflow: hidden;
-    margin-bottom: 0.5rem;
-    
+    width: 120dvw;
+    overflow: hidden;    
 }
 
 .photography-works {
     position: relative;
     transform: translateX(-50%) rotate(-5deg);
     transform-origin: center center;
+}
+
+.photography-works img {
+    height: 5em;
+    margin: 0.5em;
+    flex-shrink: 0;
 }
 </style>

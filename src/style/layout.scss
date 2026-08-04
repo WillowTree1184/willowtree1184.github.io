@@ -44,3 +44,12 @@
 .half-w {
     width: 50%;
 }
+
+.nowap {
+    white-space: nowrap;
+}
+
+.nowap.overflow-ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
