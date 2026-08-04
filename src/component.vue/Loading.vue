@@ -168,8 +168,8 @@ onUnmounted(() => {
                     </div>
 
                     <Transition name="skip-btn">
-                        <a v-if="showSkip" class="gap-top-8 text-level-4 skip-link interactable hover-fade-1 sub-interactable" style="position: absolute" @click.prevent="handleSkip">
-                            Skip
+                        <a v-if="showSkip" class="gap-top-8 text-level-4 skip-link interactable hover-fade-1 sub-interactable uppercase" style="position: absolute" @click.prevent="handleSkip">
+                            Skip loading image
                             <span class="inline-block hover-move-right-1">&rarr;</span>
                         </a>
                     </Transition>
