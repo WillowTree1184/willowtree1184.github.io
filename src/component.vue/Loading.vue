@@ -145,12 +145,7 @@ onUnmounted(() => {
 
 <template>
     <Transition name="loading-fade" @after-leave="onAfterLeave">
-        <div
-            v-if="visible"
-            class="component"
-            aria-busy="true"
-            aria-label="加载中"
-        >
+        <div v-if="visible" class="component" aria-busy="true" aria-label="加载中">
             <div class="container text-level-2">
                 <div>
                     <p class="text-2">initializing</p>
@@ -158,39 +153,24 @@ onUnmounted(() => {
                         <p>WillowTree1184's</p>
                         <p>Personal Website</p>
                     </h1>
-                    <p
-                        class="gap-top-8 text-level-4 flex justify-between align-baseline"
-                    >
+                    <p class="gap-top-8 text-level-4 flex justify-between align-baseline">
                         <span>
-                            <span class="text-3 nowap"
-                                >{{ log?.status }} |&nbsp;</span
-                            >
-                            <span class="gap-left-px-4"
-                                >{{ log?.msg }}&nbsp;</span
-                            >
+                            <span class="text-3 nowap">{{ log?.status }} |&nbsp;</span>
+                            <span class="gap-left-px-4">{{ log?.msg }}&nbsp;</span>
                         </span>
-                        <span class="progress-text"
-                            >{{ vitrualProgress.toFixed(0) }}%</span
-                        >
+                        <span class="progress-text">{{ vitrualProgress.toFixed(0) }}%</span>
                     </p>
 
                     <div class="loading-progress">
                         <div class="progress-track">
-                            <div
-                                class="progress-bar"
-                                :style="{ width: `${vitrualProgress}%` }"
-                            />
+                            <div class="progress-bar" :style="{ width: `${vitrualProgress}%` }" />
                         </div>
                     </div>
 
                     <Transition name="skip-btn">
-                        <a
-                            v-if="showSkip"
-                            class="gap-top-8 text-level-4 skip-link interactable hover-fade-1 sub-interactable"
-                            style="position: absolute"
-                            @click.prevent="handleSkip"
-                        >
-                            Skip <span class="hover-move-right-1">&rarr;</span>
+                        <a v-if="showSkip" class="gap-top-8 text-level-4 skip-link interactable hover-fade-1 sub-interactable" style="position: absolute" @click.prevent="handleSkip">
+                            Skip
+                            <span class="inline-block hover-move-right-1">&rarr;</span>
                         </a>
                     </Transition>
                 </div>

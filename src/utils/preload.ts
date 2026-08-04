@@ -9,8 +9,7 @@ import type { Router, RouteLocationNormalized } from 'vue-router';
 
 // ==================== 类型定义 ====================
 
-export type PreloadStage =
-    'idle' | 'dom' | 'fonts' | 'router' | 'images' | 'complete';
+export type PreloadStage = 'idle' | 'dom' | 'fonts' | 'router' | 'images' | 'complete';
 
 export interface PreloadOptions {
     /** 扫描容器，默认 document（建议传入 router-view 挂载点以精确扫描当前视图） */
@@ -104,17 +103,8 @@ function normalizeUrl(url: string): string | null {
  * 从指定容器收集图片 URL
  * 支持限制扫描范围，避免扫描到全局导航栏等无关图片
  */
-export function collectImageUrls(
-    options: Pick<
-        PreloadOptions,
-        'container' | 'includeCssImages' | 'includeSrcSet'
-    > = {},
-): string[] {
-    const {
-        container = document,
-        includeCssImages = true,
-        includeSrcSet = true,
-    } = options;
+export function collectImageUrls(options: Pick<PreloadOptions, 'container' | 'includeCssImages' | 'includeSrcSet'> = {}): string[] {
+    const { container = document, includeCssImages = true, includeSrcSet = true } = options;
 
     const urls = new Set<string>();
     const addUrl = (raw: string) => {
@@ -124,25 +114,16 @@ export function collectImageUrls(
 
     // 1. Performance API：浏览器已发起的图片请求
     try {
-        const entries = performance.getEntriesByType(
-            'resource',
-        ) as PerformanceResourceTiming[];
+        const entries = performance.getEntriesByType('resource') as PerformanceResourceTiming[];
         for (const entry of entries) {
-            const isImage =
-                entry.initiatorType === 'img' ||
-                entry.initiatorType === 'css-image' ||
-                entry.initiatorType === 'image' ||
-                /\.(jpg|jpeg|png|gif|webp|svg|avif|ico|bmp)(\?.*)?$/i.test(
-                    entry.name,
-                );
+            const isImage = entry.initiatorType === 'img' || entry.initiatorType === 'css-image' || entry.initiatorType === 'image' || /\.(jpg|jpeg|png|gif|webp|svg|avif|ico|bmp)(\?.*)?$/i.test(entry.name);
             if (isImage) addUrl(entry.name);
         }
     } catch {
         /* ignore */
     }
 
-    const root =
-        container instanceof Document ? document.documentElement : container;
+    const root = container instanceof Document ? document.documentElement : container;
 
     // 2. DOM <img>
     root.querySelectorAll('img').forEach((img) => {
@@ -156,16 +137,14 @@ export function collectImageUrls(
     });
 
     // 3. <picture> source
-    root.querySelectorAll<HTMLSourceElement>('picture source').forEach(
-        (source) => {
-            if (source.srcset) {
-                source.srcset.split(',').forEach((s) => {
-                    const src = s.trim().split(/\s+/)[0];
-                    if (src) addUrl(src);
-                });
-            }
-        },
-    );
+    root.querySelectorAll<HTMLSourceElement>('picture source').forEach((source) => {
+        if (source.srcset) {
+            source.srcset.split(',').forEach((s) => {
+                const src = s.trim().split(/\s+/)[0];
+                if (src) addUrl(src);
+            });
+        }
+    });
 
     // 4. CSS 背景图
     if (includeCssImages) {
@@ -181,12 +160,8 @@ export function collectImageUrls(
                 try {
                     Array.from(sheet.cssRules || []).forEach((rule) => {
                         if (rule instanceof CSSStyleRule) {
-                            extractUrls(rule.style.backgroundImage).forEach(
-                                addUrl,
-                            );
-                            extractUrls(rule.style.listStyleImage).forEach(
-                                addUrl,
-                            );
+                            extractUrls(rule.style.backgroundImage).forEach(addUrl);
+                            extractUrls(rule.style.listStyleImage).forEach(addUrl);
                         }
                     });
                 } catch {
@@ -207,11 +182,7 @@ export function collectImageUrls(
  */
 export function injectPreloadLinks(imageUrls: string[]): void {
     const head = document.head;
-    const existing = new Set(
-        Array.from(
-            head.querySelectorAll('link[rel="preload"][as="image"]'),
-        ).map((el) => (el as HTMLLinkElement).href),
-    );
+    const existing = new Set(Array.from(head.querySelectorAll('link[rel="preload"][as="image"]')).map((el) => (el as HTMLLinkElement).href));
 
     imageUrls.forEach((url) => {
         if (existing.has(url)) return;
@@ -262,10 +233,7 @@ export function waitForRouter(router: Router): Promise<void> {
  * 阶段 3（变体）：等待特定路由
  * 如果当前不在目标路由，会监听后续导航直到匹配
  */
-export function waitForRoute(
-    router: Router,
-    target: string | RouteLocationNormalized,
-): Promise<void> {
+export function waitForRoute(router: Router, target: string | RouteLocationNormalized): Promise<void> {
     const targetPath = typeof target === 'string' ? target : target.path;
 
     return new Promise((resolve) => {
@@ -289,17 +257,8 @@ export function waitForRoute(
  * 加载指定容器内的所有图片
  * 支持进度回调，返回成功/失败明细
  */
-export async function preloadContainerImages(
-    options: PreloadOptions & PreloadCallbacks = {},
-): Promise<PreloadResult> {
-    const {
-        container = document,
-        injectPreloadLinks: shouldInject = false,
-        onImageProgress,
-        onImageLoad,
-        onImageError,
-        ...collectOptions
-    } = options;
+export async function preloadContainerImages(options: PreloadOptions & PreloadCallbacks = {}): Promise<PreloadResult> {
+    const { container = document, injectPreloadLinks: shouldInject = false, onImageProgress, onImageLoad, onImageError, ...collectOptions } = options;
 
     const urls = collectImageUrls({
         container,
@@ -344,10 +303,7 @@ export async function preloadContainerImages(
  * 暴露完整状态和进度，供 Loader.vue 组件渲染
  */
 export function usePreloader(): PreloaderState & {
-    run: (
-        router: Router,
-        options?: PreloadOptions & PreloadCallbacks,
-    ) => Promise<PreloadResult>;
+    run: (router: Router, options?: PreloadOptions & PreloadCallbacks) => Promise<PreloadResult>;
     reset: () => void;
     skip: () => void; // ← 新增
 } {
@@ -383,21 +339,12 @@ export function usePreloader(): PreloaderState & {
         skipCtrl.abort();
     };
 
-    const run = async (
-        router: Router,
-        options: PreloadOptions & PreloadCallbacks = {},
-    ): Promise<PreloadResult> => {
+    const run = async (router: Router, options: PreloadOptions & PreloadCallbacks = {}): Promise<PreloadResult> => {
         if (isRunning.value) throw new Error('Preloader is already running');
         reset();
         isRunning.value = true;
 
-        const {
-            onStageChange,
-            onImageProgress,
-            onImageLoad,
-            onImageError,
-            ...preloadOptions
-        } = options;
+        const { onStageChange, onImageProgress, onImageLoad, onImageError, ...preloadOptions } = options;
 
         try {
             // 阶段 1: DOM
@@ -420,11 +367,7 @@ export function usePreloader(): PreloaderState & {
             stage.value = 'images';
             onStageChange?.('images');
 
-            const routerView =
-                document.querySelector('.router-view') ||
-                document.querySelector('[class*="router-view"]') ||
-                document.querySelector('#app > div') ||
-                document;
+            const routerView = document.querySelector('.router-view') || document.querySelector('[class*="router-view"]') || document.querySelector('#app > div') || document;
 
             const imagePromise = preloadContainerImages({
                 ...preloadOptions,
@@ -452,13 +395,9 @@ export function usePreloader(): PreloaderState & {
             await Promise.race([
                 imagePromise,
                 new Promise<void>((resolve) => {
-                    skipCtrl?.signal.addEventListener(
-                        'abort',
-                        () => resolve(),
-                        {
-                            once: true,
-                        },
-                    );
+                    skipCtrl?.signal.addEventListener('abort', () => resolve(), {
+                        once: true,
+                    });
                 }),
             ]);
 

@@ -1,8 +1,4 @@
-export function waitFor(
-    condition: () => boolean,
-    interval: number = 50,
-    timeout: number = 10000,
-): Promise<void> {
+export function waitFor(condition: () => boolean, interval: number = 50, timeout: number = 10000): Promise<void> {
     return new Promise((resolve, reject) => {
         const startTime = Date.now();
 

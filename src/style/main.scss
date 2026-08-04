@@ -2,6 +2,7 @@
 @use './platte.scss';
 @use './layout.scss';
 @use './interactive.scss';
+@use './animates.scss';
 
 html {
     font-family: 'JetBrains Mono';
@@ -11,6 +12,7 @@ html {
 html,
 body {
     overflow-x: hidden;
+    scale: auto;
 }
 
 * {

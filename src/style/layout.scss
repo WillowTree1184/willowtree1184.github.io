@@ -9,8 +9,16 @@
         margin-left: #{$i}px;
     }
 
+    .gap-right-px-#{$i} {
+        margin-right: #{$i}px;
+    }
+
     .gap-top-em-#{$i} {
         margin-top: #{max($i * 4)}em;
+    }
+
+    .gap-left-em-#{$i} {
+        margin-left: #{max($i * 4)}em;
     }
 }
 .right {
