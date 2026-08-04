@@ -269,8 +269,6 @@ const galleryMarqueeGroups = computed(() => {
                         :key="i"
                         :src="src"
                         class="interactable hover-fade-1"
-                        loading="lazy"
-                        decoding="async"
                     />
                 </Vue3Marquee>
             </div>
