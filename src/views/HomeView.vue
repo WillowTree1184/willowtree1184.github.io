@@ -42,7 +42,7 @@ const galleryMarqueeGroups = computed(() => {
             </div>
             &nbsp;
             <div style="flex: 3;">
-                <p class="text-2 gap-left-px-2">WillowTree1184's</p>
+                <p class="text-2 gap-left-px-3">WillowTree1184's</p>
                 <h1>Personal Website</h1>
                 <p class="text-2 text-level-4 gap-left-px-1">[ beta-v1 ]</p>
             </div>
@@ -52,7 +52,10 @@ const galleryMarqueeGroups = computed(() => {
     <div class="container flex align-center">
         <div class="full-w">
             <div id="about">
-                <p class="text-2 text-level-4 uppercase">Earth Online Account Document</p>
+                <p class="text-2 text-level-4 uppercase">Earth Online Account Database</p>
+                <p class="text-2 text-level-4 uppercase">&rsaquo; Snapshot at: 20260805 Wed 13:23:19</p>
+                <p class="text-2 text-level-4 uppercase">&rsaquo; Date format: Gregorian calendar</p>
+                <br>
                 <div class="gap-left-px-1">
                     <h2 class="flex justify-between align-baseline">
                         <b>WillowTree</b>
@@ -66,15 +69,15 @@ const galleryMarqueeGroups = computed(() => {
             </div>
         </div>
     </div>
-    <div class="container flex align-center">
+    <div id="favourite" class="container flex align-center">
         <div class="full-w">
-            <div id="favourite" class="gap-top-em-2">
+            <div class="gap-top-em-2">
                 <p class="text-4 text-level-3 uppercase gap-left-px-1">Document#001</p>
                 <h3 class="flex justify-between align-center">
                     <b>涉猎的领域</b>
                     <span class="text-2 text-level-4 uppercase">Favourite</span>
                 </h3>
-                <div class="gap-top-4 marquee-fullwidth text-2 uppercase">
+                <div class="gap-top-4 marquee-full-w text-2 uppercase">
                     <Vue3Marquee v-for="(record, i) in favouriteRecords" :duration="20" :direction="i % 2 === 0 ? 'normal' : 'reverse'" :clone="true" :pause-on-hover="true" class="interactable hover-fade-1">
                         <span v-if="isFavouriteRecord(record)">
                             <router-link v-if="record.isRouterLink ?? false" :to="record.link">{{ record.name }}&nbsp;</router-link>
@@ -117,7 +120,7 @@ const galleryMarqueeGroups = computed(() => {
                 <p class="text-3 text-level-4 uppercase">Gallery</p>
             </h3>
             <div class="gap-top-8 photography-works-vp">
-                <div class="marquee-fullwidth photography-works">
+                <div class="marquee-full-w photography-works">
                     <Vue3Marquee v-for="(group, i) in galleryMarqueeGroups" :key="i" :duration="20" :direction="i % 2 === 0 ? 'normal' : 'reverse'" :clone="true" :pause-on-hover="true">
                         <img v-for="(src, i) in group" :key="i" :src="src" class="interactable hover-fade-1" />
                     </Vue3Marquee>
@@ -152,7 +155,7 @@ const galleryMarqueeGroups = computed(() => {
                         <img src="https://logo.novasharp.org/favicon/favicon.svg" style="height: 0.8em; transform: translateY(1px)" />
                         NovaSharp
                     </b>
-                    <p class="text-2 text-level-4">A Programming Laungage</p>
+                    <p class="text-2 text-level-4">A Programming Language</p>
                     <span class="text-3 text-level-4">
                         <span class="inline-block hover-move-left-1">&larr;</span>
                         View NovaSharp Community
@@ -172,6 +175,35 @@ const galleryMarqueeGroups = computed(() => {
             </div>
         </div>
     </div>
+    <div class="flex align-center justify-between container gap-top-em-2">
+        <div class="full-w">
+            <p class="text-4 text-level-3 uppercase gap-left-px-1">Document#005</p>
+            <h3 class="flex justify-between align-center">
+                <b>联系方式</b>
+                <span class="text-2 text-level-4 uppercase">Contact</span>
+            </h3>
+            <div class="flex justify-between gap-top-8 fill-w">
+                <div>
+                    <p class="text-2 text-level-3 uppercase">E-Mail</p>
+                    <p class="selectable-all">xucx_2020@163.com</p>
+                </div>
+                <div>
+                    <p class="text-2 text-level-3 uppercase">WeChat</p>
+                    <p class="selectable-all">willow1184</p>
+                </div>
+                <div>
+                    <p class="text-2 text-level-3 uppercase">QQ</p>
+                    <p class="selectable-all">811606229</p>
+                </div>
+            </div>
+            <div class="gap-left-px-1 gap-top-em-1 text-2 uppercase">
+                <b class="text-level-2">I love having an equal communication</b>
+                <p class="text-3 text-level-4">Making friends, project issues, or just having a chat,</p>
+                <p class="text-3 text-level-4">whatever you want, Please feel free to contact me</p>
+            </div>
+        </div>
+    </div>
+    <div class="container"></div>
 </template>
 
 <style scoped>
@@ -180,15 +212,7 @@ const galleryMarqueeGroups = computed(() => {
 }
 
 .container {
-    padding-top: 18svh;
-}
-
-.marquee-fullwidth {
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 120dvw;
-    overflow: hidden;
+    padding-top: 25svh;
 }
 
 .photography-works {

@@ -152,15 +152,15 @@ onUnmounted(() => {
                         <p>WillowTree1184's</p>
                         <p>Personal Website</p>
                     </h1>
-                    <p class="gap-top-8 text-level-4 flex justify-between align-baseline">
+                    <p class="gap-top-8 text-level-4 flex justify-between align-center">
                         <span>
                             <span class="text-3 nowap">{{ log?.status }} |&nbsp;</span>
                             <span class="gap-left-px-4">{{ log?.msg }}&nbsp;</span>
                         </span>
-                        <span class="progress-text">{{ vitrualProgress.toFixed(0) }}%</span>
+                        <span class="text-4 progress-text">{{ vitrualProgress.toFixed(0) }}%</span>
                     </p>
 
-                    <div class="loading-progress gap-top-px-4">
+                    <div class="loading-progress gap-top-3">
                         <div class="progress-track">
                             <div class="progress-bar" :style="{ width: `${vitrualProgress}%` }" />
                         </div>

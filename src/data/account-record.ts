@@ -1,14 +1,15 @@
 export interface AccountRecord {
     key: string;
     value?: string | string[];
+    isRawValue?: boolean;
     children?: AccountRecord[];
-    meta?: string;
 }
 
 export const accountRecords: AccountRecord[] = [
     {
         key: 'Spec:',
-        value: ['Chordata > ', 'Mammalia > ', 'Homo Sapiens'],
+        value: ['Chordata &rang; ', 'Mammalia &rang; ', 'Homo Sapiens'],
+        isRawValue: true,
     },
     {
         key: ' Age:',
@@ -31,7 +32,7 @@ export const accountRecords: AccountRecord[] = [
                     },
                     {
                         key: 'Orig:',
-                        value: ['20091204 | ', 'Native'],
+                        value: [ '20091204 | ', 'Native' ],
                     },
                     {
                         key: 'Type:',
@@ -39,7 +40,7 @@ export const accountRecords: AccountRecord[] = [
                     },
                     {
                         key: 'MBTI:',
-                        value: ['INTP ', 'Turbulent'],
+                        value: [ 'INTP ', 'Turbulent' ],
                     },
                     {
                         key: 'Stat:',
@@ -64,18 +65,23 @@ export const accountRecords: AccountRecord[] = [
                     },
                     {
                         key: 'MBTI:',
-                        value: ['[ ', 'Unknow ', ']']
+                        value: ['[ ', 'Unknown ', ']']
                     },
                     {
                         key: 'Stat:',
-                        value: 'Connecting',
+                        value: 'Growing',
                     },
                 ],
             },
         ],
     },
     {
+        key: ' Pos:',
+        value: ['Earth &rang; ', 'Asia &rang; ', 'China'],
+        isRawValue: true,
+    },
+    {
         key: 'Stat:',
-        value: 'Active',
+        value: 'Alive',
     },
 ];

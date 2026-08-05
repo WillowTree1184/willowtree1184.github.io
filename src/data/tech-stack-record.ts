@@ -8,12 +8,12 @@ export const techStackRecords: TechStackRecord[] = [
     {
         name: '.NET',
         usage: '桌面应用 / CLI / 游戏 / Web API',
-        items: ['C#', 'VB', 'WPF', 'Unity', 'Blazor', 'Asp.Net'],
+        items: ['C#', 'VB', 'WPF', 'Unity', 'Blazor', 'ASP.NET'],
     },
     {
-        name: 'node.js',
+        name: 'Node.js',
         usage: '网页前端',
-        items: ['java script', 'type script', 'vue'],
+        items: ['JavaScript', 'TypeScript', 'Vue.js'],
     },
     {
         name: 'Bare Metal',

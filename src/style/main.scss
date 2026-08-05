@@ -7,6 +7,7 @@ html,
 body {
     overflow-x: hidden;
     scale: auto;
+    scrollbar-width: none;
 }
 
 * {
@@ -17,6 +18,7 @@ body {
     font-weight: normal;
     user-select: none;
     box-sizing: border-box;
+    outline: none;
 }
 
 b {
@@ -39,4 +41,8 @@ a:active {
 
 .inline-block {
     display: inline-block;
+}
+
+.selectable-all {
+    user-select: all;
 }

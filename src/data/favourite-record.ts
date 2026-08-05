@@ -19,7 +19,11 @@ export const favouriteRecords: (FavouriteRecord | string)[] = [
     '平面设计 Graphic Design',
     '人造意识体 Tulpamamcy',
     '猫娘 Nekomusume',
-    '哲学 Philosophy',
+    {
+        name: '哲学 Philosophy',
+        link: 'philosophy#hero',
+        isRouterLink: true
+    },
     '音乐 Music',
     {
         name: '创造 Create',

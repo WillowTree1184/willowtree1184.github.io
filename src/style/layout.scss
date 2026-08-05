@@ -61,3 +61,11 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+.marquee-full-w {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120dvw;
+    overflow: hidden;
+}
