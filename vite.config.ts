@@ -79,7 +79,7 @@ export default defineConfig(({ mode }) => ({
                         const match = id.match(/node_modules\/(?!\.pnpm\/)([^/]+)/);
                         if (match) {
                             // return `${match[1].replace('@', '')}`
-                            return 'vendor'
+                            return 'vendor';
                         }
                     }
                 },
