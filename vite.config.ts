@@ -66,19 +66,21 @@ export default defineConfig(({ mode }) => ({
     build: {
         // target: 'esnext',
         // cssTarget: 'chrome61',
-
         // 激进代码分割
         rollupOptions: {
             output: {
                 manualChunks(id) {
                     if (id.includes('node_modules')) {
-                        if (id.includes('/vue/') || id.includes('/@vue/')) {
-                            return 'vendor-vue';
+                        if (id.includes('/vue/') || id.includes('/@vue/') || id.includes('/vue-router/') || id.includes('/lenis/')) {
+                            return 'core';
                         }
 
                         // 其他第三方库
                         const match = id.match(/node_modules\/(?!\.pnpm\/)([^/]+)/);
-                        if (match) return `vendor-${match[1].replace('@', '')}`;
+                        if (match) {
+                            // return `${match[1].replace('@', '')}`
+                            return 'vendor'
+                        }
                     }
                 },
                 entryFileNames: 'js/[name]-[hash].js',
@@ -117,14 +119,44 @@ export default defineConfig(({ mode }) => ({
             compress: {
                 drop_console: true,
                 drop_debugger: true,
-                pure_funcs: ['console.log', 'console.info', 'console.warn'],
-                passes: 2, // 两次压缩 pass
+                dead_code: true,
+                unused: true,
+                evaluate: true,
+                booleans: true,
+                conditionals: true,
+                if_return: true,
+                join_vars: true,
+                loops: true,
+                properties: true,
+                keep_fargs: false,
+                keep_classnames: false,
+                keep_fnames: false,
+                arrows: true,
+                comparisons: true,
+                reduce_funcs: true,
+                reduce_vars: true,
+                sequences: true,
+                side_effects: true,
+                typeofs: true,
+                global_defs: {
+                    __VUE_PROD_DEVTOOLS__: false,
+                    __VUE_OPTIONS_API__: false,
+                },
+                passes: 5,
             },
-            // mangle: {
-            //     properties: {
-            //         regex: /^_/,          // 压缩私有属性
-            //     },
-            // },
+            format: {
+                comments: false,
+                beautify: false,
+            },
+            mangle: {
+                // 混淆属性名（⚠️ 有风险，需要配合 reserved 使用）
+                properties: false,
+                // 混淆顶级作用域变量
+                toplevel: true,
+                // 保留特定变量名（防止外部依赖被改坏）
+                reserved: [],
+            },
+            sourceMap: false,
         },
 
         // 资源内联阈值调低，小文件直接内联
