@@ -36,7 +36,7 @@ const ready = ref(false);
 
 <style scoped>
 .center-content {
-    max-width: 44em;
+    max-width: 36em;
     margin: auto;
     padding-left: 2em;
     padding-right: 2em;

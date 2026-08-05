@@ -41,10 +41,12 @@ const galleryMarqueeGroups = computed(() => {
                 <img alt="logo" :src="favicon" style="height: 4em" />
             </div>
             &nbsp;
-            <div style="flex: 3">
-                <p class="text-2 gap-left-px-3">WillowTree1184's</p>
-                <h1>Personal Website</h1>
-                <p class="text-2 text-level-4 gap-left-px-1">[ beta-v1 ]</p>
+            <div class="flex justify-center" style="flex: 5">
+                <div>
+                    <p class="text-2 gap-left-px-3">WillowTree1184's</p>
+                    <h1>Personal Website</h1>
+                    <p class="text-2 text-level-4 gap-left-px-1">[ beta-v1 ]</p>
+                </div>
             </div>
         </div>
     </div>
@@ -105,7 +107,7 @@ const galleryMarqueeGroups = computed(() => {
                         </p>
                         <p class="text-3 text-level-4">{{ record.usage }}</p>
                     </div>
-                    <div class="right text-2">
+                    <div class="right text-2 text-level-2">
                         <p v-for="item in record.items">{{ item }}</p>
                     </div>
                 </div>
