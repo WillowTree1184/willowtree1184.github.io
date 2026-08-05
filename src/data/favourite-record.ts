@@ -22,7 +22,7 @@ export const favouriteRecords: (FavouriteRecord | string)[] = [
     {
         name: '哲学 Philosophy',
         link: 'philosophy#hero',
-        isRouterLink: true
+        isRouterLink: true,
     },
     '音乐 Music',
     {

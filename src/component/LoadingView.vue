@@ -55,11 +55,15 @@ async function boot() {
             onStageChange: (s) => {
                 switch (s) {
                     case 'dom':
-                        addLog('DONE', 'Core modules loaded');
+                        addLog('INFO', 'Loading font assets...');
                         vitrualProgress.value = STAGE_PROGRESS.dom;
                         break;
                     case 'fonts':
-                        addLog('DONE', 'Font assets loaded');
+                        addLog('INFO', 'Initializing router...');
+                        vitrualProgress.value = STAGE_PROGRESS.fonts;
+                        break;
+                    case 'router':
+                        addLog('DONE', 'Router initialized...');
                         vitrualProgress.value = STAGE_PROGRESS.fonts;
                         break;
                     case 'images':
@@ -231,9 +235,8 @@ onUnmounted(() => {
     opacity: 0;
     background: hsla(var(--background-hsl-1), 0%);
     filter: blur(50px);
-    backdrop-filter: blur(0px)  brightness(100%);
+    backdrop-filter: blur(0px) brightness(100%);
 }
-
 
 .skip-btn-enter-active {
     transition:

@@ -37,11 +37,11 @@ const galleryMarqueeGroups = computed(() => {
 <template>
     <div id="hero" class="flex align-center">
         <div class="flex align-center justify-between full-w">
-            <div class="flex justify-center" style="flex: 2;">
+            <div class="flex justify-center" style="flex: 2">
                 <img alt="logo" :src="favicon" style="height: 4em" />
             </div>
             &nbsp;
-            <div style="flex: 3;">
+            <div style="flex: 3">
                 <p class="text-2 gap-left-px-3">WillowTree1184's</p>
                 <h1>Personal Website</h1>
                 <p class="text-2 text-level-4 gap-left-px-1">[ beta-v1 ]</p>
@@ -55,7 +55,7 @@ const galleryMarqueeGroups = computed(() => {
                 <p class="text-2 text-level-4 uppercase">Earth Online Account Database</p>
                 <p class="text-2 text-level-4 uppercase">&rsaquo; Snapshot at: 20260805 Wed 13:23:19</p>
                 <p class="text-2 text-level-4 uppercase">&rsaquo; Date format: Gregorian calendar</p>
-                <br>
+                <br />
                 <div class="gap-left-px-1">
                     <h2 class="flex justify-between align-baseline">
                         <b>WillowTree</b>

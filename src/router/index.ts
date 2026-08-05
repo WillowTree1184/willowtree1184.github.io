@@ -12,7 +12,7 @@ const router = createRouter({
             name: 'Personal philosophy',
             path: '/philosophy',
             component: () => import('@/views/PhilosophyView.vue'),
-        }
+        },
     ],
 });
 

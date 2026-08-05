@@ -32,7 +32,7 @@ export const accountRecords: AccountRecord[] = [
                     },
                     {
                         key: 'Orig:',
-                        value: [ '20091204 | ', 'Native' ],
+                        value: ['20091204 | ', 'Native'],
                     },
                     {
                         key: 'Type:',
@@ -40,7 +40,7 @@ export const accountRecords: AccountRecord[] = [
                     },
                     {
                         key: 'MBTI:',
-                        value: [ 'INTP ', 'Turbulent' ],
+                        value: ['INTP ', 'Turbulent'],
                     },
                     {
                         key: 'Stat:',
@@ -65,7 +65,7 @@ export const accountRecords: AccountRecord[] = [
                     },
                     {
                         key: 'MBTI:',
-                        value: ['[ ', 'Unknown ', ']']
+                        value: ['[ ', 'Unknown ', ']'],
                     },
                     {
                         key: 'Stat:',

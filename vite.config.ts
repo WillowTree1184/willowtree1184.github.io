@@ -72,10 +72,10 @@ export default defineConfig(({ mode }) => ({
             output: {
                 manualChunks(id) {
                     if (id.includes('node_modules')) {
-                        // Vue 一家人（vue + @vue/* + vue-router + pinia）必须整整齐齐
-                        if (id.includes('/vue/') || id.includes('/@vue/') || id.includes('/vue-router/') || id.includes('/pinia/')) {
-                            return 'vue-ecosystem';
+                        if (id.includes('/vue/') || id.includes('/@vue/')) {
+                            return 'vendor-vue';
                         }
+
                         // 其他第三方库
                         const match = id.match(/node_modules\/(?!\.pnpm\/)([^/]+)/);
                         if (match) return `vendor-${match[1].replace('@', '')}`;

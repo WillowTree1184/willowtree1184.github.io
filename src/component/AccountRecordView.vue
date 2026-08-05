@@ -9,7 +9,7 @@ const props = defineProps<{
 </script>
 
 <script lang="ts">
-const ArrayValue : any = defineComponent({
+const ArrayValue: any = defineComponent({
     props: {
         parts: { type: Array as PropType<string[]>, required: true },
         isRawValue: { type: Boolean, default: false }, // 新增
@@ -19,22 +19,22 @@ const ArrayValue : any = defineComponent({
             if (!props.parts.length) return null;
 
             const [first, ...rest] = props.parts;
-            
+
             // isRawValue 为 true 时使用 innerHTML（即 v-html）
-            const firstNode = props.isRawValue
-                ? h('span', { innerHTML: first })
-                : first;
+            const firstNode = props.isRawValue ? h('span', { innerHTML: first }) : first;
 
             return h('span', [
                 firstNode,
                 rest.length > 0
-                    ? h('span', { class: 'inline-block hover-move-right-1' },
-                        h(ArrayValue, { 
-                            parts: rest, 
-                            isRawValue: props.isRawValue // 递归传递
-                        })
-                    )
-                    : null
+                    ? h(
+                          'span',
+                          { class: 'inline-block hover-move-right-1' },
+                          h(ArrayValue, {
+                              parts: rest,
+                              isRawValue: props.isRawValue, // 递归传递
+                          }),
+                      )
+                    : null,
             ]);
         };
     },
@@ -45,7 +45,7 @@ const ArrayValue : any = defineComponent({
     <p v-for="(record, i) in $props.record as AccountRecord[]">
         <span class="sub-interactable">
             <span>
-                <pre style="display: inline" v-html="`${ prefix ?? '' }${  i === $props.record.length - 1 ? '&boxur;&boxh; ' : '&boxvr;&boxh; ' }`"></pre>
+                <pre style="display: inline" v-html="`${prefix ?? ''}${i === $props.record.length - 1 ? '&boxur;&boxh; ' : '&boxvr;&boxh; '}`"></pre>
             </span>
             <span class="hover-fade-1">
                 {{ record.key }}
