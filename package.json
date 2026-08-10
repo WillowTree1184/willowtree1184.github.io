@@ -34,6 +34,7 @@
         "postcss-combine-duplicated-selectors": "^10.0.3",
         "postcss-preset-env": "^11.3.2",
         "prettier": "3.9.5",
+        "sass": "^1.102.0",
         "sass-embedded": "^1.100.0",
         "sharp": "^0.35.3",
         "svgo": "^4.0.2",

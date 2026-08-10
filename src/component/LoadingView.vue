@@ -38,14 +38,11 @@ function handleSkip() {
 }
 
 async function boot() {
-    const startTime = Date.now();
-    const MIN_LOAD_TIME = 200;
-
     performance.clearResourceTimings();
 
     addLog('INFO', 'System initializing...');
     vitrualProgress.value = 10;
-    await delay(120);
+    await delay(10);
 
     try {
         await run(router, {
@@ -99,23 +96,16 @@ async function boot() {
             vitrualProgress.value = 80;
         }
 
-        addLog('INFO', 'Rendering interface...');
-        vitrualProgress.value = 95;
-
-        const elapsed = Date.now() - startTime;
-        const remain = Math.max(0, MIN_LOAD_TIME - elapsed);
-        if (remain > 0) await delay(remain);
-
         vitrualProgress.value = 100;
         addLog('DONE', 'System ready');
-        await delay(800);
+        await delay(250);
         visible.value = false;
     } catch (err) {
         console.error('Boot failed:', err);
         addLog('ERR', 'System failure');
         if (skipTimer) clearTimeout(skipTimer);
         vitrualProgress.value = 100;
-        await delay(1000);
+        await delay(100);
         visible.value = false;
     }
 }
@@ -219,7 +209,7 @@ onUnmounted(() => {
     top: 0;
     height: 100%;
     background: var(--text-1);
-    transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: width 0.15s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* 过渡动画 */

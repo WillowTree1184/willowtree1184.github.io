@@ -2,9 +2,11 @@
     .gap-top-#{$i} {
         margin-top: #{max($i * $i)}px;
     }
-}
 
-@for $i from 1 through 4 {
+    .gap-left-#{$i} {
+        margin-left: #{max($i * $i)}px;
+    }
+
     .gap-left-px-#{$i} {
         margin-left: #{$i}px;
     }

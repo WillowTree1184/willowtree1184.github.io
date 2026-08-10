@@ -6,6 +6,7 @@ import AccountRecordView from '@/component/AccountRecordView.vue';
 import { accountRecords } from '@/data/account-record';
 import { favouriteRecords, isFavouriteRecord } from '@/data/favourite-record';
 import { techStackRecords } from '@/data/tech-stack-record';
+import { contactRecord } from '@/data/contact-record';
 
 // const photographyWorkGlobs = import.meta.glob('@/assets/photography-work/*.featured.*', {
 //     eager: true,
@@ -35,13 +36,12 @@ const galleryMarqueeGroups = computed(() => {
 </script>
 
 <template>
-    <div id="hero" class="flex align-center">
-        <div class="flex align-center justify-between full-w">
-            <div class="flex justify-center" style="flex: 2">
+    <div id="hero" class="flex align-center justify-center">
+        <div class="flex align-center text-level-2">
+            <div class="">
                 <img alt="logo" :src="favicon" style="height: 4em" />
             </div>
-            &nbsp;
-            <div class="flex justify-center" style="flex: 5">
+            <div class="gap-left-6">
                 <div>
                     <p class="text-2 gap-left-px-3">WillowTree1184's</p>
                     <h1>Personal Website</h1>
@@ -71,24 +71,26 @@ const galleryMarqueeGroups = computed(() => {
             </div>
         </div>
     </div>
-    <div id="favourite" class="container flex align-center">
+    <div id="favourite" class="container flex align-center gap-top-em-2">
         <div class="full-w">
-            <div class="gap-top-em-2">
-                <p class="text-4 text-level-3 uppercase gap-left-px-1">Document#001</p>
-                <h3 class="flex justify-between align-center">
-                    <b>涉猎的领域</b>
-                    <span class="text-2 text-level-4 uppercase">Favourite</span>
-                </h3>
-                <div class="gap-top-4 marquee-full-w text-2 uppercase">
-                    <Vue3Marquee v-for="(record, i) in favouriteRecords" :duration="20" :direction="i % 2 === 0 ? 'normal' : 'reverse'" :clone="true" :pause-on-hover="true" class="interactable hover-fade-1">
-                        <span v-if="isFavouriteRecord(record)">
-                            <router-link v-if="record.isRouterLink ?? false" :to="record.link">{{ record.name }}&nbsp;</router-link>
-                            <a v-else :href="record.link">{{ record.name }}&nbsp;</a>
-                        </span>
-                        <p v-else>{{ record }}&nbsp;</p>
-                    </Vue3Marquee>
-                </div>
+            <p class="text-4 text-level-3 uppercase gap-left-px-1">Document#001</p>
+            <h3 class="flex justify-between align-center">
+                <b>涉猎的领域</b>
+                <span class="text-2 text-level-4 uppercase">Favourite</span>
+            </h3>
+            <div class="gap-top-4 marquee-full-w text-2 uppercase">
+                <Vue3Marquee v-for="(record, i) in favouriteRecords" :duration="20" :direction="i % 2 === 0 ? 'normal' : 'reverse'" :clone="true" :pause-on-hover="true" class="interactable hover-fade-1">
+                    <span v-if="isFavouriteRecord(record)">
+                        <router-link v-if="record.isRouterLink ?? false" :to="record.link">{{ record.name }}&nbsp;</router-link>
+                        <a v-else :href="record.link">{{ record.name }}&nbsp;</a>
+                    </span>
+                    <p v-else>{{ record }}&nbsp;</p>
+                </Vue3Marquee>
             </div>
+            <p class="gap-top-4 text-4 text-level-4 uppercase">
+                <b>NOTE:</b>
+                只是感兴趣喵，有些领域并不是特别了解呢～
+            </p>
         </div>
     </div>
 
@@ -128,7 +130,7 @@ const galleryMarqueeGroups = computed(() => {
                     </Vue3Marquee>
                 </div>
             </div>
-            <div class="gap-left-px-1 gap-top-em-1 right text-2 uppercase">
+            <div class="gap-left-px-1 gap-top-em-1 right text-2 text-level-4 uppercase">
                 <b>Devices</b>
                 <p class="text-3 text-level-3">Eyes & Phone</p>
                 <br />
@@ -184,18 +186,10 @@ const galleryMarqueeGroups = computed(() => {
                 <b>联系方式</b>
                 <span class="text-2 text-level-4 uppercase">Contact</span>
             </h3>
-            <div class="flex justify-between gap-top-8 fill-w">
-                <div>
-                    <p class="text-2 text-level-3 uppercase">E-Mail</p>
-                    <p class="selectable-all">xucx_2020@163.com</p>
-                </div>
-                <div>
-                    <p class="text-2 text-level-3 uppercase">WeChat</p>
-                    <p class="selectable-all">willow1184</p>
-                </div>
-                <div>
-                    <p class="text-2 text-level-3 uppercase">QQ</p>
-                    <p class="selectable-all">811606229</p>
+            <div>
+                <div v-for="record in contactRecord" class="gap-top-8">
+                    <b class="text-2 text-level-3 uppercase">{{ record.way }}</b>
+                    <p class="selectable-all">{{ record.detail }}</p>
                 </div>
             </div>
             <div class="gap-left-px-1 gap-top-em-1 text-2 uppercase">

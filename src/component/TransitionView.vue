@@ -14,14 +14,26 @@ const activeNavigations = ref(0);
 const { stage, total, isComplete, isSkipped, run, skip } = usePreloader();
 
 const removeBeforeEach = router.beforeEach(async (to, from) => {
+    if (to.path === from.path) {
+        return true;
+    }
+
+    direction.value = to.path.split('/').length < from.path.split('/').length || to.path === '/' ? 'left' : 'right';
+
     visible.value = true;
     destination.value = (to.name ?? to.path) as string;
+
     await new Promise((r) => setTimeout(r, 500));
     lockScroll();
     return true;
 });
 
+const direction = ref<'left' | 'right'>('right');
+
 const removeAfterEach = router.afterEach(async (to, from, failure) => {
+    if (to.path === from.path) {
+        return true;
+    }
     activeNavigations.value = 0;
     try {
         await run(router, {
@@ -56,7 +68,7 @@ onBeforeUnmount(() => {
 
 <template>
     <Transition name="transition" @after-leave="unlockScroll">
-        <div v-if="visible" class="component">
+        <div v-if="visible" :class="`component ${direction}`">
             <div class="container">
                 <p class="text-level-2 uppercase">
                     <span class="text-3">Goto</span>
@@ -76,7 +88,7 @@ onBeforeUnmount(() => {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: hsla(var(--background-hsl-2), 100%);
+    background: hsla(var(--background-hsl-1), 100%);
     backdrop-filter: blur(50px) brightness(120%);
     inset: 0;
     z-index: 9998;
@@ -90,27 +102,29 @@ onBeforeUnmount(() => {
 .transition-enter-active,
 .transition-leave-active {
     transition:
-        clip-path 0.35s ease-in-out,
-        filter 0.5s ease-in-out,
-        background 0.5s ease-in-out,
-        backdrop-filter 0.5s ease-in-out,
-        opacity 0.5s ease-in-out;
+        clip-path 0.5s ease-out,
+        filter 0.5s ease-out,
+        background 0.5s ease-out,
+        backdrop-filter 0.5s ease-out,
+        opacity 0.5s ease-out;
     clip-path: inset(0 0 0 0);
 }
 
 .transition-enter-from,
 .transition-leave-to {
-    filter: blur(5px);
+    filter: blur(50px);
     background: hsla(var(--background-hsl-2), 0);
     backdrop-filter: blur(50px);
     opacity: 0;
 }
 
-.transition-enter-from {
+.left.transition-leave-to,
+.right.transition-enter-from {
     clip-path: inset(0 0 0 100%);
 }
 
-.transition-leave-to {
+.right.transition-leave-to,
+.left.transition-enter-from {
     clip-path: inset(0 100% 0 0);
 }
 </style>
