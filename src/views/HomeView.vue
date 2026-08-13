@@ -80,7 +80,7 @@ const galleryMarqueeGroups = computed(() => {
         <div class="full-w">
             <p class="text-4 text-level-3 uppercase gap-left-px-1">Document#001</p>
             <h3 class="flex justify-between align-center">
-                <b>涉猎的领域</b>
+                <b>喜好</b>
                 <span class="text-2 text-level-4 uppercase">Favourite</span>
             </h3>
             <div class="gap-top-4 marquee-full-w text-2 uppercase">
@@ -107,7 +107,7 @@ const galleryMarqueeGroups = computed(() => {
         <div class="full-w">
             <p class="text-4 text-level-3 gap-left-px-2 uppercase">Document#002</p>
             <h3 class="flex justify-between align-baseline">
-                <b>用过的技术栈</b>
+                <b>技术栈</b>
                 <span class="text-2 text-level-4 uppercase">Tech stack</span>
             </h3>
             <div>
@@ -127,9 +127,9 @@ const galleryMarqueeGroups = computed(() => {
     </div>
     <div id="gallery" class="flex align-center container gap-top-em-2">
         <div class="full-w">
-            <p class="text-4 text-level-3 gap-left-px-1 uppercase">Document#003</p>
+            <p class="text-4 text-level-3 gap-left-px-2 uppercase">Document#003</p>
             <h3>
-                <b>摄影作品</b>
+                <b class="gap-left-px-1">摄影</b>
                 <p class="text-3 text-level-4 uppercase">Gallery</p>
             </h3>
             <div class="gap-top-8 photography-works-vp">
@@ -192,7 +192,7 @@ const galleryMarqueeGroups = computed(() => {
         <div class="full-w">
             <p class="text-4 text-level-3 uppercase gap-left-px-1">Document#005</p>
             <h3 class="flex justify-between align-center">
-                <b>联系方式</b>
+                <b>索引</b>
                 <span class="text-2 text-level-4 uppercase">Contact</span>
             </h3>
             <div>

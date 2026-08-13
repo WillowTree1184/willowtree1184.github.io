@@ -29,6 +29,7 @@ export const favouriteRecords: (FavouriteRecord | string)[] = [
         name: '创造 Create',
         link: '#projects',
     },
+    '网络协议栈 Reticulum Network Stack'
 ];
 
 export function isFavouriteRecord(value: unknown): value is FavouriteRecord {
