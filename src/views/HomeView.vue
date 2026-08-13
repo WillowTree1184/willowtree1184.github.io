@@ -39,11 +39,11 @@ const galleryMarqueeGroups = computed(() => {
     <div id="hero" class="flex align-center justify-center">
         <div class="flex align-center text-level-2">
             <div class="">
-                <img alt="logo" :src="favicon" style="height: 4em" />
+                <img alt="logo" :src="favicon" style="height: 3em" />
             </div>
             <div class="gap-left-6">
                 <div>
-                    <p class="text-2 gap-left-px-3">WillowTree1184's</p>
+                    <p class="text-2 gap-left-px-4">WillowTree1184's</p>
                     <h1>Personal Website</h1>
                     <p class="text-2 text-level-4 gap-left-px-1">[ beta-v1 ]</p>
                 </div>
@@ -55,9 +55,6 @@ const galleryMarqueeGroups = computed(() => {
         <div class="full-w">
             <div id="about">
                 <p class="text-2 text-level-4 uppercase">Earth Online Account Database</p>
-                <p class="text-2 text-level-4 uppercase">&rsaquo; Snapshot at: 20260805 Wed 13:23:19</p>
-                <p class="text-2 text-level-4 uppercase">&rsaquo; Date format: Gregorian calendar</p>
-                <br />
                 <div class="gap-left-px-1">
                     <h2 class="flex justify-between align-baseline">
                         <b>WillowTree</b>
@@ -67,6 +64,14 @@ const galleryMarqueeGroups = computed(() => {
                         <p>&boxv;</p>
                         <AccountRecordView :record="accountRecords"></AccountRecordView>
                     </div>
+                </div>
+                <div class="text-2 text-level-5 uppercase">
+                    <br/>
+                    <p>Snapshot at 20260805 Wed 13:23:19</p>
+                    <br/>
+                    <b>with</b>
+                    <p>Date format: Gregorian calendar</p>
+                    <p>Local Position: Laniakea Supercluster &rang; Milky Way &rang; Solar System</p>
                 </div>
             </div>
         </div>
@@ -88,8 +93,12 @@ const galleryMarqueeGroups = computed(() => {
                 </Vue3Marquee>
             </div>
             <p class="gap-top-4 text-4 text-level-4 uppercase">
-                <b>NOTE:</b>
+                <b>*</b>
                 只是感兴趣喵，有些领域并不是特别了解呢～
+            </p>
+            <p class="text-4 text-level-4 uppercase">
+                <b>*</b>
+                部分行可以交互
             </p>
         </div>
     </div>
@@ -213,7 +222,7 @@ const galleryMarqueeGroups = computed(() => {
 
 .photography-works {
     position: relative;
-    transform: translateX(-50%) rotate(-5deg);
+    transform: translateX(-50%) rotate(-7deg);
     transform-origin: center center;
 }
 

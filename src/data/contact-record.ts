@@ -16,4 +16,8 @@ export const contactRecord: ContactRecord[] = [
         way: 'GitHub',
         detail: 'WillowTree1184',
     },
+    {
+        way: 'LXMF (RNS)',
+        detail: '35f55ded579e9e22b61d2531977f1b83'
+    }
 ];

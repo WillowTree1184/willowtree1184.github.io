@@ -12,6 +12,10 @@
     .text-level-#{$i} {
         font-size: #{100% - ($i - 1) * 10%};
     }
+
+    .background-#{$i} {
+        background-color: var(--background-#{$i});
+    }
 }
 
 html {
